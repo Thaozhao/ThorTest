@@ -1,0 +1,19 @@
+	select count(enterprise_person_id),first_name,last_name,birth_dt 
+	from user_service.people.people with(nolock) 
+	where 
+	(
+		(first_name = 'Piper' and last_name='Shield' )
+		or (first_name = 'Madison' and last_name='Grook')
+		or (first_name = 'Jack' and last_name='Sellens')
+		or (first_name = 'Lily' and last_name='Towler')
+		or (first_name = 'Olivia' and last_name='Tudor')
+		or (first_name = 'Josie' and last_name='Hutchinson')
+		or (first_name = 'Nathan' and last_name='Tanner')
+		or (first_name = 'Stephanie' and last_name='Marsh')
+		or (first_name = 'Dylan' and last_name='Thurston')
+		or (first_name = 'Kaden' and last_name='Warrilow')
+	)
+	and agency_id = 'E6DFD223-E5ED-4030-B0E4-06EA16E95512' and birth_dt > '1997-06-30 00:00:00'
+	group by first_name,last_name,birth_dt
+	having count(enterprise_person_id)>1
+	order by last_name,birth_dt asc 
